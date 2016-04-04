@@ -1,0 +1,6 @@
+com\ppp\formBeans\RegisterBean.class
+com\ppp\dao\HibernateSessionFactory.class
+com\ppp\util\Validator.class
+com\ppp\validator\AllFormValidator.class
+com\ppp\controller\RegisterController.class
+com\ppp\messageBeans\RegisterMesageBean.class
