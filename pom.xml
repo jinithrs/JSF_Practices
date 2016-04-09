@@ -93,7 +93,8 @@
         <configuration>
           <warSourceDirectory>WebContent</warSourceDirectory>
           <failOnMissingWebXml>false</failOnMissingWebXml>
-          <outputDirectory>E:\SandeepData\apache-tomcat-7.0.57\webapps</outputDirectory>          
+          <!--  <outputDirectory>E:\SandeepData\apache-tomcat-7.0.57\webapps</outputDirectory>    -->   
+          <outputDirectory>H:\JavaInstalled\apache-tomcat-9.0.0.M4-windows-x86\apache-tomcat-9.0.0.M4\webapps</outputDirectory>   
         </configuration>
       </plugin>      
     </plugins>
