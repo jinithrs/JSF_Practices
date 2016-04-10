@@ -9,5 +9,6 @@ public interface DaoInterface {
 	public RegisterTableEo doRegister(RegisterTableEo object) throws SQLException;
 	public boolean doLogin(LoginTableEo object)throws SQLException;
 	public boolean activateAccount(RegisterTableEo object) throws SQLException;
-	public RegisterTableEo retrieveRegisterEo(String email);
+	public RegisterTableEo retrieveRegisterEo(String email);	
+	boolean duplicateRegisteration(String email);
 }

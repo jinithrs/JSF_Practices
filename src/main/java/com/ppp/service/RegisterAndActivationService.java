@@ -13,7 +13,7 @@ import com.ppp.eo.AddressTableEo;
 import com.ppp.eo.LoginTableEo;
 import com.ppp.eo.RegisterTableEo;
 import com.ppp.formBeans.RegisterBean;
-import com.ppp.util.UtilityFunctions;
+import com.ppp.util.Utility;
 
 public class RegisterAndActivationService {
 	private RegisterTableEo registerEo;
@@ -21,7 +21,10 @@ public class RegisterAndActivationService {
 	private AddressTableEo addressEo;
 	private RegisterDao registerDao;
 	private Logger logger= LoggerFactory.getLogger(RegisterAndActivationService.class);
-	public boolean doRegister(RegisterBean bean) throws SQLException{
+	public String doRegister(RegisterBean bean) throws SQLException{
+		registerDao= new RegisterDao();
+		if(registerDao.duplicateRegisteration(bean.getEmailId()))
+			return "DUPLICATE";
 		registerEo= new RegisterTableEo();
 		loginEo= new LoginTableEo();
 		addressEo= new AddressTableEo();
@@ -32,7 +35,7 @@ public class RegisterAndActivationService {
 		registerEo.setRegLname(bean.getLname());
 		registerEo.setRegmobileNo(bean.getmNum());
 		registerEo.setRegDate(new Date());
-		registerEo.setRegHashcode(UtilityFunctions.generateRandomHash());
+		registerEo.setRegHashcode(Utility.generateRandomHash());
 		
 		loginEo.setPassword(bean.getPassword());
 		loginEo.setEmailId(bean.getEmailId());
@@ -53,15 +56,15 @@ public class RegisterAndActivationService {
 		List<AddressTableEo> list= new ArrayList<AddressTableEo>();
 		list.add(addressEo);
 		registerEo.setAddressList(list);
-		registerDao= new RegisterDao();
+		
 		logger.info("Register Eo object created.");
 		registerEo=registerDao.doRegister(registerEo);
 		if(registerEo!=null){			
 		logger.info("Registration successful for user {}",registerEo.getEmailId());
-		return true;
+		return "SUCCESS";
 		}
 		logger.info("Registration unsuccessfull for user {}",user);
-		return false;
+		return "FAILED";
 		
 	}
 	

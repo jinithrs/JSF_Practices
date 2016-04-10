@@ -15,6 +15,20 @@ public class RegisterBean {
 	private String emailId;
 	private String password;
 	private String confPass;
+	
+	public void flush(){
+		this.fname="";
+		this.lname="";
+		this.mNum="";
+		this.add1="";
+		this.add2="";
+		this.town="";
+		this.state="";
+		this.pincode="";
+		this.emailId="";
+		this.password="";
+		this.confPass="";
+	}
 	/**
 	 * @return the fname
 	 */
